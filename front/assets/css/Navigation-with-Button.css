@@ -216,3 +216,13 @@
   font-family: Montserrat, sans-serif;
 }
 
+#regform {
+  height: 100vh;
+}
+
+#regbody {
+  /*background-color: black;*/
+  font-family: Montserrat, sans-serif;
+  color: rgb(0,0,0);
+}
+
