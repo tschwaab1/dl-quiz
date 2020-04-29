@@ -1,0 +1,152 @@
+body {
+  background-color: rgb(0,0,0);
+  color: rgb(255,255,255);
+}
+
+#hero {
+  width: 100%;
+  height: 100vh;
+  background-image: url("../../assets/img/erik-mclean-ZRns2R5azu0-unsplash.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #333;
+}
+
+#topdiv {
+}
+
+#bottom-div {
+  color: #fff;
+}
+
+.start-button {
+  margin-left: 0px;
+  font-family: Montserrat, sans-serif;
+  background-color: rgba(0,98,204,0);
+  border: 3px solid #fff;
+  border-radius: 30px;
+  color: #ffffff;
+  filter: invert(0%) sepia(0%);
+}
+
+.start-button:hover, .start-button:focus, .start-button:active {
+  background-color: rgba(204,122,0,0.86) !important;
+  border: 3px solid #fff !important;
+  box-shadow: none !important;
+}
+
+#footer-p {
+  margin-bottom: -162px;
+  font-family: Montserrat, sans-serif;
+  font-size: 12px;
+}
+
+#copyrightfooter {
+  font-family: Montserrat, sans-serif;
+  font-size: 13px;
+  text-align: center;
+  color: #ffffff;
+  background-color: rgba(0,0,0,0.39);
+}
+
+#a-no-underline {
+  text-decoration: none;
+}
+
+#centerquiz {
+}
+
+#bodyquiz {
+  background-color: rgb(255,255,255);
+}
+
+#quiztop-div-1 {
+}
+
+#quizbottom-div-1 {
+  font-family: Montserrat, sans-serif;
+  /*margin-top: 150px;*/
+}
+
+#quizcopyrightfooter {
+  color: rgb(0,0,0);
+  font-size: 13px;
+  font-family: Montserrat, sans-serif;
+}
+
+#quizhead {
+  color: black;
+}
+
+#quizsubHead {
+  color: black;
+}
+
+#quizp {
+  color: #000000;
+}
+
+#countTime {
+  color: black;
+  font-family: Montserrat, sans-serif;
+  font-size: 45px;
+  text-align: center;
+}
+
+#pquestion {
+  color: rgb(0,0,0);
+  font-family: Montserrat, sans-serif;
+}
+
+#checkfalse {
+  color: rgb(255,0,0);
+  font-family: Montserrat, sans-serif;
+  font-weight: bold;
+}
+
+#questcontainer {
+}
+
+#checktrue {
+  color: rgb(37,255,2);
+  font-weight: bold;
+  font-family: Montserrat, sans-serif;
+}
+
+#correct-button {
+}
+
+#correctbutton {
+}
+
+.correct-button {
+  margin-left: 0px;
+  font-family: Montserrat, sans-serif;
+  background-color: rgba(0,98,204,0);
+  border: 3px solid #fff;
+  border-radius: 30px;
+  color: #ffffff;
+  filter: invert(0%) sepia(0%);
+}
+
+.correct-button:hover, .correct-button:focus, .correct-button:active {
+  background-color: rgba(0,204,20,0.68) !important;
+  border: 3px solid #fff !important;
+  box-shadow: none !important;
+}
+
+#a-no-underline-1 {
+  text-decoration: none;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color: #cc7a00;
+  border-color: rgba(204,122,0,0.86);
+}
+
+.btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 .2rem rgba(38,143,255,0);
+}
+

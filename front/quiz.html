@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>driving licence</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/untitled.css">
+</head>
+
+<body id="bodyquiz">
+    <section class="d-flex flex-column justify-content-between">
+        <div id="quiztop-div-1">
+            <nav class="navbar navbar-light navbar-expand-md">
+                <div class="container-fluid"><a class="navbar-brand" href="#">Logo</a></div>
+            </nav>
+            <h1 class="text-center" id="quizhead" style="margin-top: 25px;font-size: 32px;">Quiz page</h1>
+            <h2 class="text-center" id="quizsubHead" style="font-size: 38px;">Time Remaining</h2>
+            <div class="col">
+                <p id="countTime" class="countTime">Rimuovere</p>
+            </div>
+        </div>
+    </section>
+    <section class="text-center">
+        <figure class="figure" id="signal"><img class="img-fluid figure-img" src="assets/img/stopsignal.png" width="70%" height="auto">
+            <figcaption class="figure-caption">Question nr. 1</figcaption>
+        </figure>
+    </section>
+    <section>
+        <div>
+            <div class="container" style="margin-bottom: 45px;">
+                <div class="row">
+                    <div class="col-sm-10 col-md-10 col-lg-8 col-xl-6 offset-sm-1 offset-md-1 offset-lg-2 offset-xl-3 text-center align-self-center">
+                        <p id="quizp" style="font-family: Montserrat, sans-serif;">The signal shown obliges the driver to stop at the cross stop strip and to give priority to the other vehicles.</p>
+                        <div style="margin-bottom: 10px;">
+                            <div class="form-check d-inline"><input class="form-check-input" type="radio" id="formCheck-1"><label class="form-check-label" id="checktrue" for="formCheck-1">T</label></div>
+                            <div class="form-check d-inline" style="margin-left: 45px;"><input class="form-check-input" type="radio"><label class="form-check-label" id="checkfalse">F</label></div>
+                        </div><a id="a-no-underline" href="/quiz.html"><button class="btn btn-primary btn-block text-center flex-grow-0 flex-shrink-0 start-button" data-bs-hover-animate="pulse" type="button" style="background-color: rgba(204,122,0,0.51);">Next&nbsp;<i class="fa fa-chevron-right"></i></button></a>
+                        <a
+                            id="a-no-underline-1" href="/quiz.html"><button class="btn btn-primary btn-block text-center flex-grow-0 flex-shrink-0 correct-button" data-bs-hover-animate="pulse" type="button" style="background-color: rgba(0,204,20,0.51);">Correct&nbsp;<i class="fa fa-check"></i></button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div>
+        <footer class="text-center" id="quizcopyrightfooter">
+            <p>© WIE 01&nbsp;2020&nbsp;-&nbsp;All&nbsp;right&nbsp;reserved<br></p>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.js"></script>
+    <script src="assets/js/timerscript.js"></script>
+</body>
+
+</html>
