@@ -9,8 +9,6 @@ Simply include the mysqli.class.php (located inside the "includes" folder)
 ```php
 <?php
  require_once("mysqli.class.php");
-
-$db = new db($dbhost, $dbuser, $dbpass, $dbname);
 ?>
 ```
 
