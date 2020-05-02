@@ -13,9 +13,6 @@ body {
   color: #333;
 }
 
-#topdiv {
-}
-
 #bottom-div {
   color: #fff;
 }
@@ -54,14 +51,8 @@ body {
   text-decoration: none;
 }
 
-#centerquiz {
-}
-
 #bodyquiz {
   background-color: rgb(255,255,255);
-}
-
-#quiztop-div-1 {
 }
 
 #quizbottom-div-1 {
@@ -75,16 +66,8 @@ body {
   font-family: Montserrat, sans-serif;
 }
 
-#quizhead {
+#quizhead, #quizsubHead, #quizp {
   color: black;
-}
-
-#quizsubHead {
-  color: black;
-}
-
-#quizp {
-  color: #000000;
 }
 
 #countTime {
@@ -105,19 +88,10 @@ body {
   font-weight: bold;
 }
 
-#questcontainer {
-}
-
 #checktrue {
   color: rgb(37,255,2);
   font-weight: bold;
   font-family: Montserrat, sans-serif;
-}
-
-#correct-button {
-}
-
-#correctbutton {
 }
 
 .correct-button {
@@ -140,13 +114,65 @@ body {
   text-decoration: none;
 }
 
+/* Fixare il color hover */
+
 .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
   color: #fff;
   background-color: #f4476b;
-  border-color: rgba(204,122,0,0.86);
+  /*border-color: rgba(204,122,0,0.86);*/
 }
 
 .btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show > .btn-primary.dropdown-toggle:focus {
   box-shadow: 0 0 0 .2rem rgba(38,143,255,0);
+}
+
+a:hover {
+  /*color: #0056b3;*/
+  text-decoration: none;
+}
+
+.btn.btn-primary.signupbtn {
+  /*background: #56c6c6;*/
+  background: rgba(204,122,0,0.86);
+  border-radius: 20px;
+  font-size: inherit;
+  color: #fff;
+  box-shadow: none;
+  border: none;
+  text-shadow: none;
+  padding: .5rem 1rem;
+  transition: background-color 0.25s;
+  font-size: inherit;
+  font-family: Montserrat, sans-serif;
+}
+
+/* New Quiz Button */
+
+.btn.btn-primary.btn-block.text-center.flex-grow-0.flex-shrink-0.newquizbutton {
+  margin-left: 0px;
+  font-family: Montserrat, sans-serif;
+  background-color: rgba(0,98,204,0);
+  border: 3px solid #fff;
+  border-radius: 30px;
+  color: #ffffff;
+  filter: invert(0%) sepia(0%);
+}
+
+.newquizbutton:hover, .newquizbutton:focus, .newquizbutton:active {
+  background-color: rgba(0,82,204,0.72) !important;
+  border: 3px solid #fff !important;
+  box-shadow: none !important;
+}
+
+@media (min-width: 300px) {
+  #imgres {
+    width: 60%;
+  }
+}
+
+@media (min-width: 992px) {
+  #imgres {
+    width: 70%;
+  }
 }
 
