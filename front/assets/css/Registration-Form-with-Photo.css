@@ -6,7 +6,7 @@
 .register-photo .image-holder {
   display: table-cell;
   width: auto;
-  background: url(../../assets/img/meeting.jpg);
+  /*background: url(meeting.jpg);*/
   background-size: cover;
 }
 
@@ -81,5 +81,15 @@
   color: #6f7a85;
   opacity: 0.9;
   text-decoration: none;
+}
+
+#regbody {
+  /*background-color: black;*/
+  font-family: Montserrat, sans-serif;
+  color: rgb(0,0,0);
+}
+
+#regform {
+  height: 100vh;
 }
 
