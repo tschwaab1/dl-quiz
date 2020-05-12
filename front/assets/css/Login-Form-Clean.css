@@ -1,5 +1,5 @@
 .login-clean {
-  background: #f1f7fc;
+  background: rgba(241,247,252,0);
   padding: 80px 0;
 }
 
@@ -69,5 +69,6 @@
 #loginbody {
   font-family: Montserrat, sans-serif;
   color: rgb(0,0,0);
+  background: url(../../assets/img/bg-pattern.png),linear-gradient(to left,#7b4397,#dc2430);
 }
 
