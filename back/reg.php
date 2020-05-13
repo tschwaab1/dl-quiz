@@ -1,4 +1,15 @@
 <?php
+/**
+ * reg.php
+ *
+ * Registration
+ *
+ * @email  	   thomas@schwaab.bayern
+ * @copyright  (C) 2020 by BI01
+ * @license    https://directory.fsf.org/wiki/License:X11  MIT/X11/X - Licence
+ */
+
+
 require_once("./includes/config.inc.php");
 
 $ip = $_SERVER['REMOTE_ADDR'];

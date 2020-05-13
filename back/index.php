@@ -1,4 +1,13 @@
 <?php
+/**
+ * index.php
+ *
+ * index.php
+ *
+ * @email  	   thomas@schwaab.bayern
+ * @copyright  (C) 2020 by BI01
+ * @license    https://directory.fsf.org/wiki/License:X11  MIT/X11/X - Licence
+ */
 
 session_start();
 if(!isset($_SESSION["username"])){
