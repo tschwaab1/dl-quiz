@@ -18,7 +18,12 @@ $dbuser = 'tschwaab_dl';
 $dbpass = 'Of45J3NHBZSI04y5';
 $dbname = 'dl';
 
-$db = new db($dbhost, $dbuser, $dbpass, $dbname);
+$db = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
+// Check connection
+if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
 
 
 
