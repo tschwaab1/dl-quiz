@@ -176,3 +176,7 @@ a:hover {
   }
 }
 
+.navbar-expand-md .navbar-nav .dropdown-menu {
+  margin-left: -80px;
+}
+
