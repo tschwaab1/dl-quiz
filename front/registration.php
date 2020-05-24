@@ -27,11 +27,6 @@ $time = time();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- <link rel="stylesheet" href="assets/css/Article-List.css"> -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"> -->
-    <!-- <link rel="stylesheet" href="https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.css"> -->
-    <!-- <link rel="stylesheet" href="assets/css/Login-Form-Clean.css"> -->
-    <!-- <link rel="stylesheet" href="assets/css/Map-Clean.css"> -->
     <link rel="stylesheet" href="../assets/css/Registration-Form-with-Photo.css">
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="../assets/css/untitled.css">
@@ -66,6 +61,7 @@ $time = time();
                 </nav>
             </div>
             <h1 id="head" class="text-center">Registration page</h1>
+            
         </section>
         <main>
             <section></section>
@@ -75,18 +71,15 @@ $time = time();
                 <form name="reg" method="post">
                     <h2 class="text-center"><strong>Create</strong> an account.</h2>
                     <div class="form-group"><input class="form-control" type="text" name="username" placeholder="User" required autofocus pattern="^[a-zA-Z0-9_.-]*$"></div>
-                    <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email" required="" autofocus=""></div>
-                    <div class="form-group"><input class="form-control" type="password" name="pass" placeholder="Password" required="" minlength="6"></div>
-                    <div class="form-group"><input class="form-control" type="password" required="" name="password-repeat" placeholder="Password (repeat)" minlength="6"></div>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Sign Up</button></div><a class="already" href="/login.html">You already have an account? Login here.</a>
+                    <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email" required autofocus=""></div>
+                    <div class="form-group"><input class="form-control" type="password" name="password" id="password" placeholder="Password" required minlength="6" ></div>
+                    <div class="form-group"><input class="form-control" type="password" name="password_repeat" id="password_repeat" required placeholder="Password (repeat)" minlength="6" oninput='check_pass();'></div>
+                    <div class="form-group"><p class="text-center" id='message'></p><button id="submit" name="submit" class="btn btn-primary btn-block" type="submit" disabled>Sign Up</button></div><a class="already" href="login.php">You already have an account? Login here.</a>
                 </form>
             </div>
         </div>
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
-    <script src="https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.js"></script>
-    <script src="assets/js/timerscript.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="..\\assets/js/check-pass.js"></script>
     <?php } ?>
 </body>
 
