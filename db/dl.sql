@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2020 at 01:33 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.3
+-- Erstellungszeit: 31. Mai 2020 um 15:07
+-- Server-Version: 10.4.11-MariaDB
+-- PHP-Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dl`
+-- Datenbank: `dl`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `questions`
+-- Tabellenstruktur für Tabelle `questions`
 --
 
 CREATE TABLE `questions` (
@@ -35,7 +35,7 @@ CREATE TABLE `questions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `questions`
+-- Daten für Tabelle `questions`
 --
 
 INSERT INTO `questions` (`id`, `qText`, `qAnsw`) VALUES
@@ -113,20 +113,34 @@ INSERT INTO `questions` (`id`, `qText`, `qAnsw`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tries`
+-- Tabellenstruktur für Tabelle `tries`
 --
 
 CREATE TABLE `tries` (
   `id` int(11) NOT NULL,
   `qid` int(11) NOT NULL,
-  `state` tinyint(1) NOT NULL,
-  `time` int(11) NOT NULL
+  `uid` int(11) NOT NULL,
+  `data` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Daten für Tabelle `tries`
+--
+
+INSERT INTO `tries` (`id`, `qid`, `uid`, `data`) VALUES
+(1, 12345643, 0, 'JSON Data'),
+(2, 34278012, 0, '{\"q0\":0,\"q1\":\"1\",\"q2\":\"1\",\"q3\":\"1\",\"q4\":\"1\",\"q5\":0,\"q6\":\"1\",\"q7\":\"1\",\"q8\":\"1\",\"q9\":\"1\",\"q10\":\"1\",\"q11\":\"1\",\"q12\":\"1\",\"q13\":\"1\",\"q14\":\"1\",\"q15\":\"1\",\"q16\":\"1\",\"q17\":\"1\",\"q18\":\"1\",\"q19\":\"1\",\"q20\":\"1\",\"q21\":\"1\",\"q22\":\"1\",\"q23\":\"1\",\"q24\":\"1\",\"q25\":\"1\",\"q26\":\"1\",\"q27\":\"1\",\"q28\":\"1\",\"q29\":\"1\",\"q30\":\"1\",\"q31\":\"1\",\"q32\":\"1\",\"q33\":\"1\",\"q34\":\"1\",\"q35\":\"1\",\"q36\":\"1\",\"q37\":\"1\",\"q38\":\"1\",\"q39\":\"1\"}'),
+(3, 94790944, 0, '{\"q0\":\"1\",\"q1\":\"1\",\"q2\":\"1\",\"q3\":\"1\",\"q4\":\"1\",\"q5\":\"1\",\"q6\":\"1\",\"q7\":\"1\",\"q8\":\"1\",\"q9\":\"1\",\"q10\":\"1\",\"q11\":\"1\",\"q12\":\"1\",\"q13\":\"1\",\"q14\":\"1\",\"q15\":\"1\",\"q16\":\"1\",\"q17\":\"1\",\"q18\":\"1\",\"q19\":\"1\",\"q20\":\"1\",\"q21\":\"1\",\"q22\":\"1\",\"q23\":\"1\",\"q24\":\"1\",\"q25\":\"1\",\"q26\":\"1\",\"q27\":\"1\",\"q28\":\"1\",\"q29\":\"1\",\"q30\":\"1\",\"q31\":\"1\",\"q32\":\"1\",\"q33\":\"1\",\"q34\":\"1\",\"q35\":\"1\",\"q36\":\"1\",\"q37\":\"1\",\"q38\":\"1\",\"q39\":\"1\"}'),
+(4, 64374287, 0, '{\"q0\":\"1\",\"q1\":\"1\",\"q2\":\"1\",\"q3\":\"1\",\"q4\":\"1\",\"q5\":\"1\",\"q6\":\"1\",\"q7\":\"1\",\"q8\":0,\"q9\":0,\"q10\":1,\"q11\":0,\"q12\":0,\"q13\":0,\"q14\":0,\"q15\":0,\"q16\":\"1\",\"q17\":1,\"q18\":1,\"q19\":1,\"q20\":1,\"q21\":0,\"q22\":0,\"q23\":0,\"q24\":1,\"q25\":1,\"q26\":\"1\",\"q27\":\"1\",\"q28\":\"1\",\"q29\":\"1\",\"q30\":\"1\",\"q31\":\"1\",\"q32\":\"1\",\"q33\":\"1\",\"q34\":\"1\",\"q35\":\"1\",\"q36\":\"1\",\"q37\":\"1\",\"q38\":\"1\",\"q39\":\"1\"}'),
+(5, 70578332, 0, '{\"q0\":\"1\",\"q1\":0,\"q2\":0,\"q3\":1,\"q4\":0,\"q5\":0,\"q6\":1,\"q7\":1,\"q8\":0,\"q9\":0,\"q10\":0,\"q11\":0,\"q12\":1,\"q13\":0,\"q14\":0,\"q15\":0,\"q16\":0,\"q17\":0,\"q18\":1,\"q19\":0,\"q20\":0,\"q21\":1,\"q22\":1,\"q23\":1,\"q24\":1,\"q25\":0,\"q26\":1,\"q27\":0,\"q28\":0,\"q29\":1,\"q30\":1,\"q31\":0,\"q32\":0,\"q33\":0,\"q34\":0,\"q35\":0,\"q36\":0,\"q37\":0,\"q38\":0,\"q39\":1,\"q40\":0}'),
+(6, 68614391, 0, '{\"q0\":\"1\",\"q1\":\"1\",\"q2\":\"1\",\"q3\":1,\"q4\":1,\"q5\":0,\"q6\":0,\"q7\":\"1\",\"q8\":\"1\",\"q9\":\"1\",\"q10\":\"1\",\"q11\":\"1\",\"q12\":\"1\",\"q13\":\"1\",\"q14\":\"1\",\"q15\":\"1\",\"q16\":\"1\",\"q17\":\"1\",\"q18\":\"1\",\"q19\":\"1\",\"q20\":\"1\",\"q21\":\"1\",\"q22\":\"1\",\"q23\":\"1\",\"q24\":\"1\",\"q25\":\"1\",\"q26\":\"1\",\"q27\":\"1\",\"q28\":\"1\",\"q29\":\"1\",\"q30\":\"1\",\"q31\":\"1\",\"q32\":\"1\",\"q33\":\"1\",\"q34\":\"1\",\"q35\":\"1\",\"q36\":\"1\",\"q37\":\"1\",\"q38\":\"1\",\"q39\":\"1\"}'),
+(7, 42945808, 0, '{\"q0\":\"1\",\"q1\":\"1\",\"q2\":\"1\",\"q3\":\"1\",\"q4\":\"1\",\"q5\":\"1\",\"q6\":\"1\",\"q7\":\"1\",\"q8\":\"1\",\"q9\":\"1\",\"q10\":\"1\",\"q11\":\"1\",\"q12\":\"1\",\"q13\":\"1\",\"q14\":\"1\",\"q15\":\"1\",\"q16\":\"1\",\"q17\":\"1\",\"q18\":\"1\",\"q19\":\"1\",\"q20\":\"1\",\"q21\":\"1\",\"q22\":\"1\",\"q23\":\"1\",\"q24\":\"1\",\"q25\":\"1\",\"q26\":\"1\",\"q27\":\"1\",\"q28\":\"1\",\"q29\":\"1\",\"q30\":\"1\",\"q31\":\"1\",\"q32\":\"1\",\"q33\":\"1\",\"q34\":\"1\",\"q35\":\"1\",\"q36\":\"1\",\"q37\":\"1\",\"q38\":\"1\",\"q39\":\"1\"}'),
+(8, 24368339, 0, '{\"q0\":\"1\",\"q1\":\"1\",\"q2\":\"1\",\"q3\":\"1\",\"q4\":\"1\",\"q5\":\"1\",\"q6\":\"1\",\"q7\":\"1\",\"q8\":\"1\",\"q9\":1,\"q10\":\"1\",\"q11\":\"1\",\"q12\":\"1\",\"q13\":\"1\",\"q14\":\"1\",\"q15\":\"1\",\"q16\":\"1\",\"q17\":\"1\",\"q18\":\"1\",\"q19\":\"1\",\"q20\":\"1\",\"q21\":\"1\",\"q22\":\"1\",\"q23\":\"1\",\"q24\":\"1\",\"q25\":\"1\",\"q26\":\"1\",\"q27\":\"1\",\"q28\":\"1\",\"q29\":\"1\",\"q30\":\"1\",\"q31\":\"1\",\"q32\":\"1\",\"q33\":\"1\",\"q34\":\"1\",\"q35\":\"1\",\"q36\":\"1\",\"q37\":\"1\",\"q38\":\"1\",\"q39\":\"1\"}');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Tabellenstruktur für Tabelle `users`
 --
 
 CREATE TABLE `users` (
@@ -140,52 +154,53 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
+-- Daten für Tabelle `users`
 --
 
 INSERT INTO `users` (`id`, `uname`, `pass`, `email`, `ip`, `timestamp`, `qnr`) VALUES
-(5, 'tschwaab', '06255ffba34b1f1cbe0abe39ebd9bb52', 'thomas@schwaab.bayern', '::1', 1589369545, '');
+(5, 'tschwaab', '21232f297a57a5a743894a0e4a801fc3', 'thomas@schwaab.bayern', '::1', 1589369545, '');
 
 --
--- Indexes for dumped tables
+-- Indizes der exportierten Tabellen
 --
 
 --
--- Indexes for table `questions`
+-- Indizes für die Tabelle `questions`
 --
 ALTER TABLE `questions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tries`
+-- Indizes für die Tabelle `tries`
 --
 ALTER TABLE `tries`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uid` (`uid`);
 
 --
--- Indexes for table `users`
+-- Indizes für die Tabelle `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT für exportierte Tabellen
 --
 
 --
--- AUTO_INCREMENT for table `questions`
+-- AUTO_INCREMENT für Tabelle `questions`
 --
 ALTER TABLE `questions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
--- AUTO_INCREMENT for table `tries`
+-- AUTO_INCREMENT für Tabelle `tries`
 --
 ALTER TABLE `tries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT für Tabelle `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
