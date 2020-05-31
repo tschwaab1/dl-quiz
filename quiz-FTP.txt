@@ -1,0 +1,14 @@
+Domain:	 		quiz.schwaab.bayern
+Root Directory: /web/
+(equals htdocs)
+
+FTP-User:		quizquiz
+FTP-Pass:		Tu8ipRt_V7ExA
+
+Database Name:	c2quiz
+DB User:		c21
+DB Pass:		bM!4tjjYMD
+phpMyAdmin:		https://schwaab.bayern:8080/phpmyadmin/
+
+(You have to accept the Security warning, because the SSL-Certificat is not valid
+But it's not a real security issue)
