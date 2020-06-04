@@ -1,56 +1,81 @@
 <?php
-/**
- * login.php
- *
- * Login
- *
- * @email  	   thomas@schwaab.bayern
- * @copyright  (C) 2020 by BI01
- * @license    https://directory.fsf.org/wiki/License:X11  MIT/X11/X - Licence
- */
- 
-require_once("./includes/config.inc.php");
+$error = NULL;
+
+if (isset($_POST['submit'])){
+    
+    $mysqli = new mysqli('localhost', 'root', '', 'dltest');
 
 
-	session_start();
-	
-    // If form submitted
-    if (isset($_POST['username']) && isset($_POST['pass'])){
-		
-		$username = stripslashes($_POST['username']); //slashes
-		$password = stripslashes($_POST['pass']);
-		
-		$username = mysqli_real_escape_string($db,$username); //escape
-		$password = mysqli_real_escape_string($db,$password);
-		
-	// Check if account exists
-        $query = "SELECT * FROM `users` WHERE uname='$username' and pass='".md5($password)."'";
-		
-		$result = mysqli_query($db,$query) or die(mysql_error());
-		$rows = mysqli_num_rows($result);
-		
-        if($rows==1){
-			$_SESSION['username'] = $username;
-			header("Location: quiz1.php"); // Redirect user to index.php
-            }else{
-				echo "<div class='form'><h3>Username/password is incorrect.</h3><br/>Click here to <a href='login.php'>Login</a></div>";
-				}
-    }else{
-		// No form sumitted
-		// show this HTML 
-		
-?>
-<div class="form">
-<h1>Log In</h1>
-<form action="" method="post" name="login">
-<input type="text" name="username" placeholder="User" required />
-<input type="password" name="pass" placeholder="Pass" required />
-<input name="submit" type="submit" value="Login" />
-</form>
-<p>Not registered yet? <a href='reg.php'>Register Here</a></p>
+    $username = $mysqli->real_escape_string($_POST['username']);
+    $password = $mysqli->real_escape_string($_POST['password']);
+    $password = md5($password);
+
+
+    $resultSet = $mysqli->query("SELECT * FROM accounts WHERE username = '$username' AND
+     password = '$password' LIMIT 1");
+
+     if($resultSet->num_rows != 0){
+        //Process Login
+        $row = $resultSet->fetch_assoc();
+        $verified = $row['verified'];
+        $email = $row['email'];
+        $date = $row['createdate'];
+        $date = strtotime($date);
+        $date = date('M d Y', $date);
+
+        if($verified == 1){
+            //Continue Processing (here put header with logged page)
+            header('Location: http://www.example.com/');
+        }else{
+            $error = "This account has not yet been verified. An email was sent to $email on $date";
+        }
+
+     }else{
+        //Invalid credentials
+        $error = "The username or password you entered is incorrect";
+     }
+}
+?><!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/untitled.css">
+</head>
+
+<body id="loginbody">
+    <section>
+        <div id="top-div">
+            <nav class="navbar navbar-light navbar-expand-md">
+                <div class="container-fluid"><a class="navbar-brand" href="#">WIE BI01</a></div>
+            </nav>
+        </div>
+        <h1 id="head" class="text-center">Login page</h1>
+    </section>
+    <div class="text-center">
+    <?php echo $error; ?>
 </div>
-<?php } ?>
+    <!-- <main>
+        <section></section>
+    </main> -->
 
+    <div class="login-clean">
+        <form method="post" name="login">
+            <h2 class="sr-only">Login Form</h2>
+            <div class="illustration"><i class="fa fa-car"></i></div>
+            <div class="form-group"><input class="form-control" type="text" name="username" placeholder="User" autofocus=""></div>
+            <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="submit">Log In</button></div><a class="forgot" href="registration.php">You dont have an account? Register here.</a>
+        </form> 
+    </div>
 
 </body>
+
 </html>
