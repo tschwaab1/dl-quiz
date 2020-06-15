@@ -1,17 +1,21 @@
 <?php
 session_start();
-$_SESSION["id"] = "1";
 $conn = mysqli_connect("localhost", "root", "", "dltest") or die("Connection Error: " . mysqli_error($conn));
 
 if (count($_POST) > 0) {
-    $result = mysqli_query($conn, "SELECT *from username WHERE id='" . $_SESSION["id"] . "'");
+    $result = mysqli_query($conn, "SELECT *from accounts WHERE username='" . $_SESSION["username"] . "'");
     $row = mysqli_fetch_array($result);
-    if ($_POST["currentPassword"] == $row["password"]) {
-        mysqli_query($conn, "UPDATE username set password='" . md5($_POST["newPassword"]) . "' WHERE id='" . $_SESSION["id"] . "'");
+    if (md5($_POST["currentPassword"]) == $row["password"]) {
+        mysqli_query($conn, "UPDATE accounts set password='" . md5($_POST["newPassword"]) . "' WHERE username='" . $_SESSION["username"] . "'");
         $message = "Password Changed";
+       
     } else
         $message = "Current Password is not correct";
+
 }
+
+
+
 ?>
 <html>
 
@@ -85,7 +89,7 @@ return output;
 			<div class="form-group"><input class="form-control" type="password" name="newPassword" placeholder="New Password" autofocus=""></div>
             <div class="form-group"><input class="form-control" type="password" name="newPassword" placeholder="Confirm Password"></div>
 			<div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="submit">Update</button></div>
-			<div class="message"><?php if(isset($message)) { echo $message; } ?></div>
+            <div class="message"><?php if(isset($message)) { echo $message; } ?></div>
         </form> 
     </div>
 
