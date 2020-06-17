@@ -97,10 +97,10 @@ include('./quiz.php');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.css">
-    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
-    <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/untitled.css">
+    <link rel="stylesheet" href="./assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="./assets/css/Registration-Form-with-Photo.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/untitled.css">
 	
 
 </head>
@@ -117,7 +117,7 @@ include('./quiz.php');
                             <li class="nav-item" role="presentation"><a class="nav-link" href="#">Driving School</a></li>
                         </ul>
                         <ul class="nav navbar-nav">
-                            <li class="nav-item" role="presentation"><a class="nav-link active" href="#"><?php echo $_SESSION['username'];?></a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Hello <?php echo $_SESSION['username'];?></a></li>
                         </ul>
                     </div>
                 </div>

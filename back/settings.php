@@ -1,12 +1,13 @@
 <?php
+require_once("./includes/config.inc.php");
+
 session_start();
-$conn = mysqli_connect("localhost", "root", "", "dltest") or die("Connection Error: " . mysqli_error($conn));
 
 if (count($_POST) > 0) {
-    $result = mysqli_query($conn, "SELECT *from accounts WHERE username='" . $_SESSION["username"] . "'");
+    $result = mysqli_query($db, "SELECT *from accounts WHERE username='" . $_SESSION["username"] . "'");
     $row = mysqli_fetch_array($result);
     if (md5($_POST["currentPassword"]) == $row["password"]) {
-        mysqli_query($conn, "UPDATE accounts set password='" . md5($_POST["newPassword"]) . "' WHERE username='" . $_SESSION["username"] . "'");
+        mysqli_query($db, "UPDATE accounts set password='" . md5($_POST["newPassword"]) . "' WHERE username='" . $_SESSION["username"] . "'");
         $message = "Password Changed";
        
     } else

@@ -6,7 +6,6 @@
 .register-photo .image-holder {
   display: table-cell;
   width: auto;
-  /*background: url(meeting.jpg);*/
   background-size: cover;
 }
 
@@ -15,7 +14,7 @@
   max-width: 700px;
   width: 90%;
   margin: 0 auto;
-  box-shadow: 1px 1px 5px rgba(0,0,0,0.15);
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.15);
 }
 
 .register-photo form {
@@ -56,7 +55,8 @@
 }
 
 .register-photo form .btn-primary {
-  background: rgba(244,71,107,0.91);
+  /* background: rgba(244,71,107,0.91); */
+  background: orange!important;
   border: none;
   border-radius: 4px;
   padding: 11px;
@@ -67,7 +67,8 @@
 }
 
 .register-photo form .btn-primary:hover, .register-photo form .btn-primary:active {
-  background: #eb3b60;
+  /* background: #eb3b60; */
+  background: darkorange!important;
 }
 
 .register-photo form .btn-primary:active {
@@ -87,10 +88,15 @@
   /*background-color: black;*/
   font-family: Montserrat, sans-serif;
   color: rgb(0,0,0);
-  background: url(../../assets/img/bg-pattern.png),linear-gradient(to left,#7b4397,#dc2430);
+  background-color: #edf2ef;
+  /* background: url(../../assets/img/bg-pattern.png),linear-gradient(to left,#7b4397,#dc2430);  */
 }
 
 #regform {
   height: 100vh;
 }
-
+/* messaggio che appare al centro dopo la registrazione, cambiare con bs */
+.regtextsucc {
+  text-align: center;
+  margin-top: 200px;
+}

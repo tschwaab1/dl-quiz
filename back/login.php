@@ -1,17 +1,18 @@
 <?php
+require_once("./includes/config.inc.php");
+
+	session_start();
+
 $error = NULL;
 
 if (isset($_POST['submit'])){
     
-    $mysqli = new mysqli('localhost', 'root', '', 'dltest');
-
-
-    $username = $mysqli->real_escape_string($_POST['username']);
-    $password = $mysqli->real_escape_string($_POST['password']);
+    $username = $db->real_escape_string($_POST['username']);
+    $password = $db->real_escape_string($_POST['password']);
     $password = md5($password);
 
 
-    $resultSet = $mysqli->query("SELECT * FROM accounts WHERE username = '$username' AND
+    $resultSet = $db->query("SELECT * FROM accounts WHERE username = '$username' AND
      password = '$password' LIMIT 1");
 
      if($resultSet->num_rows != 0){
@@ -25,7 +26,8 @@ if (isset($_POST['submit'])){
 
         if($verified == 1){
             //Continue Processing (here put header with logged page)
-            header('Location: http://www.example.com/');
+			$_SESSION['username'] = $username;
+            header('Location: ./index.php');
         }else{
             $error = "This account has not yet been verified. An email was sent to $email on $date";
         }
@@ -45,9 +47,9 @@ if (isset($_POST['submit'])){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../assets/css/Login-Form-Clean.css">
-    <link rel="stylesheet" href="../assets/css/styles.css">
-    <link rel="stylesheet" href="../assets/css/untitled.css">
+    <link rel="stylesheet" href="./assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/untitled.css">
 </head>
 
 <body id="loginbody">

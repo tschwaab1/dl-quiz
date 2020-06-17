@@ -1,4 +1,7 @@
 <?php
+require_once("./includes/config.inc.php");
+
+
 $error = NULL;
 
 if (isset($_POST['submit'])) {
@@ -14,28 +17,29 @@ if (isset($_POST['submit'])) {
         $error .= "<p>Your passwords do not match</p>";
     } else {
         //Form valid
-        //Connect to the DB
-        $mysqli = new mysqli('localhost', 'root', '', 'dltest');
-        //Sanitize form data
-        $username = $mysqli->real_escape_string($username);
-        $password = $mysqli->real_escape_string($password);
-        $password_repeat = $mysqli->real_escape_string($password_repeat);
-        $email = $mysqli->real_escape_string($email);
+
+       
+
+	   //Sanitize form data
+        $username = $db->real_escape_string($username);
+        $password = $db->real_escape_string($password);
+        $password_repeat = $db->real_escape_string($password_repeat);
+        $email = $db->real_escape_string($email);
 
         //Generate Vkey
         $vkey = md5(time().$username);
 
         //Insert account into the DB
         $password = md5($password);
-        $insert = $mysqli->query("INSERT INTO accounts (username, password, email, vkey)
+        $insert = $db->query("INSERT INTO accounts (username, password, email, vkey)
         VALUES('$username', '$password', '$email', '$vkey')");
 
         if($insert){
             $to = $email;
-            $subject = "Email Verification";
-            $message = "Welcome to Driving Licence Quiz website, <a href='http://localhost/WIE%20project/back/verify.php?vkey=$vkey'>
+            $subject = "Driving-quiz.it - Email Verification";
+            $message = "Welcome to Driving Licence Quiz website, <a href='https://driving-quiz.it/verify.php?vkey=$vkey'>
             click on the link</a> to confirm your account and start training now!";
-            $headers = "From: drivinglicencequizbi01@gmail.com \r\n";
+            $headers = "From: admin@driving-quiz.it \r\n";
             $headers .= "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
@@ -43,7 +47,7 @@ if (isset($_POST['submit'])) {
 
             header('location:thankyou.html');
         }else {
-            echo $mysqli->error;
+            echo $db->error;
         }
         
     }
@@ -62,9 +66,9 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../assets/css/Registration-Form-with-Photo.css">
-    <link rel="stylesheet" href="../assets/css/styles.css">
-    <link rel="stylesheet" href="../assets/css/untitled.css">
+    <link rel="stylesheet" href="./assets/css/Registration-Form-with-Photo.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/untitled.css">
 </head>
 
 <body id="regbody">
@@ -96,7 +100,7 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="..\\assets/js/check-pass.js"></script>
+    <script src="./assets/js/check-pass.js"></script>
 
     <?php
     echo $error;
