@@ -1,13 +1,13 @@
-Domain:	 		quiz.schwaab.bayern
+Domain:	 		driving-quiz.it
 Root Directory: /web/
 (equals htdocs)
 
-FTP-User:		quizquiz
-FTP-Pass:		Tu8ipRt_V7ExA
+FTP-User:		quiz_ftp
+FTP-Pass:		kX2EX9p_m
 
-Database Name:	c2quiz
-DB User:		c21
-DB Pass:		bM!4tjjYMD
+Database Name:	c2_quiz
+DB User:		C2_quiz
+DB Pass:		_ojYeeEYh8G
 phpMyAdmin:		https://schwaab.bayern:8080/phpmyadmin/
 
 (You have to accept the Security warning, because the SSL-Certificat is not valid
