@@ -45,6 +45,7 @@ require_once("./includes/config.inc.php");
 		//Write to $_SESSION
 		
 		$_SESSION['qList'] = $text;
+		$questionList = $text;
 		
 		//Write nr 1 Quest to SESSION
 	
@@ -71,7 +72,7 @@ require_once("./includes/config.inc.php");
 	
 		$newda = json_encode($jda);
 		
-		$query = "INSERT INTO `tries` (`id`, `qid`, `data`) VALUES (NULL, '$qid', '$newda');";
+		$query = "INSERT INTO `tries` (`id`, `qid`, `data`, `qList`) VALUES (NULL, '$qid', '$newda', '$questionList');";
 		mysqli_query($db ,$query);
 		
 	}
