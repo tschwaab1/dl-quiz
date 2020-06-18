@@ -10,7 +10,7 @@ if(isset($_GET['vkey'])){
 
     if($resultSet->num_rows ==1){
         
-        $update = $db->query("UPDATE ACCOUNTS SET verified = 1 WHERE vkey = '$vkey' LIMIT 1");
+        $update = $db->query("UPDATE accounts SET verified = 1 WHERE vkey = '$vkey' LIMIT 1");
 
         if($update){
             echo "Your account has been verified. You must now login";
