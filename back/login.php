@@ -21,12 +21,14 @@ if (isset($_POST['submit'])){
         $verified = $row['verified'];
         $email = $row['email'];
         $date = $row['createdate'];
+		$uid = $row['id'];
         $date = strtotime($date);
         $date = date('M d Y', $date);
 
         if($verified == 1){
             //Continue Processing (here put header with logged page)
 			$_SESSION['username'] = $username;
+			$_SESSION['uid']	  = $uid;
             header('Location: ./index.php');
         }else{
             $error = "This account has not yet been verified. An email was sent to $email on $date";

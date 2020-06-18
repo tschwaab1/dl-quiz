@@ -1,243 +1,202 @@
 <?php
+//error_reporting(0);
 /**
- * login.php
- *
- * Login
- *
- * @email  	   thomas@schwaab.bayern
- * @copyright  (C) 2020 by BI01
- * @license    https://directory.fsf.org/wiki/License:X11  MIT/X11/X - Licence
- */
- 
-require_once("./includes/config.inc.php");
+Zweidimensionales Array ID, answer GLOBAL
 
-	global $safeAnsw;
-	$safeAnsw = array(range(0,39));
-	
-	
-	session_start();
-	
-	function prep_quiz(){
-		
-		
-		global $text,$db;
+*/
 
-		  $query = "SELECT id FROM questions ORDER BY Rand() LIMIT 40";
-		  $result = mysqli_query($db ,$query);
-				
-		  while($row = mysqli_fetch_assoc($result)){
+session_start();
 
-				$temp = $row['id'];
-				
-					if($text == ""){
-						
-						$text = $temp;
-					}else{
-									
-						$text = $text.";".$temp;
-					}
-					
-		  }
+include('./includes/QuizFunc.php');
+
+
+	if(!isset($_GET['action'])){
 		
-		//echo $text;
-		//Now $text contains 40 random id's of questions
-		
-		//Write to $_SESSION
-		
-		$_SESSION['qList'] = $text;
-		$questionList = $text;
-		
-		//Write nr 1 Quest to SESSION
+		$_GET['action'] = "";
 	
-		$qList = explode(";",$text);
-		$_SESSION['currentq'] = $qList[0];
-		
-				if(!isset($_SESSION['questPos'])){
-					$_SESSION['questPos'] = 0;
+	}
+
+	switch($_GET['action']){
+	
+		case "correct":
 			
-				}else{
+			header('location: result.php');
 			
-					$_SESSION['questPos'] = $_SESSION['questPos'] + 1;
-		}
+        break;
 		
-		//Inizialise Quiz in DB
-		$qid = rand(10000000,99999999); // Generate
-		$_SESSION['qid'] = $qid;		// safe to session
+		case "next":
+			
+			if($_SESSION['questPos'] >= NUM_OF_QUESTIONS){
 		
-			for($i = 0; $i <= 39; $i++){
+				
+				unset($_SESSION["currentq"]);
+				unset($_SESSION["questPos"]);
+				unset($_SESSION["qList"]);
 		
-				$jda["q".$i] = "1";
-		
+				header('location: result.php');
 			}
-	
-		$newda = json_encode($jda);
-		
-		$query = "INSERT INTO `tries` (`id`, `qid`, `data`, `qList`) VALUES (NULL, '$qid', '$newda', '$questionList');";
-		mysqli_query($db ,$query);
-		
-	}
-		
-	function print_question($nr){
-		/**
-		Select question Text from Database and write it to array $question[0]
-		
-		*/
-		global $db;
-		
-		$query = "SELECT qText,qAnsw,qImg,qCat FROM questions WHERE id ='$nr'";
-		
-		$result = mysqli_query($db, $query);
-		$row = mysqli_fetch_assoc($result);
-	
-		/**
-		echo $row['qText'];
-		echo "<br>";
-		echo $row['qAnsw'];
-		**/	
-		
-		$question[0] = $row['qText'];
-		$question[1] = $row['qAnsw'];
-		$question[2] = $row['qImg'];
-		
-		return $question;
-	}
-	
-	function update_question(){
-
-	/**
-	Take qList and currentq from SESSION
-	
-	make qList from String to Array
-		Remove first element
-			make array to String
-	
-	Upddate qList and currentq to Session
-		-> Set Session counter +1
-	*/
-
-	$qList = $_SESSION['qList'];
-	$currentq = $_SESSION['currentq'].";";
-
-	//Question List to Array	
-	$qArr = explode (";",$qList);
-	
-	//Delete first element	
-	$remove = array_shift($qArr);
-
-	//Array to String	
-	$newList = implode(";",$qArr);
-		
-	// Write new List and new current question to SESSION
-	$_SESSION['qList'] 		= $newList;
-	$_SESSION['currentq'] 	= $qArr[0];
-	$_SESSION['questPos']   = $_SESSION['questPos'] + 1;
-	
-	/**
-
-$string = "29;23;24;26;44;66;22;22;33;22;11;";		
-		
-		$trimmed = str_replace("29;", '', $string);
-		
-		$cun = explode(";",$string);
-		
-		
-		
-		$c = count($cun);
-		
-		echo "Full String: ".$string;
-		echo "<br> Trimmed: ".$trimmed;
-		echo "<br> Num of ele".$c;
-		
-		**/
-
-	
-	}
-	
-	function addAnswer($qid ,$nr, $answer){
-		
-	global $db;
-	
-	$query = "SELECT id,data FROM `tries` WHERE `qid` = $qid";
-	$result = mysqli_query($db, $query) or die(mysqli_error($db));
-
-		$row = mysqli_fetch_array($result);
-	
-	$data = $row['data'];
-
-	$ndata = json_decode($data,true);
-		//retrieve json from db and write to array;
-		
-		$qus = "q".$nr;
-		
-	$ndata[$qus] = $answer;
-		//set answer
-		
-	$newData = json_encode($ndata);
-		//data back to json format
-		
-	$query = "UPDATE `tries` SET `data` = '$newData' WHERE `tries`.`qid` = $qid;";
-	mysqli_query($db, $query) or die(mysqli_error($db));
-		//back to database
-
-	
-	
-	
-	}
-
-	
-	function endQuiz($count){
-		
-		//if($_SESSION['questPos'] >= 39 OR ){
 			
+			// Load new Question
+			update_question();
 			
-	//	}
-	
-	
-	if($count >= 40){
+			//new text to variable
+			
+			$question = print_question($_SESSION['currentq']);
+			
+			$value = $_GET['answ'];
+			
+			if($value == $question[1]){
+				
+			addAnswer($_SESSION['qid'], $_SESSION['questPos'],1);
+					echo "<script> window.alert('True'); </script>";
+			}else{
+			addAnswer($_SESSION['qid'], $_SESSION['questPos'],0);
+					echo "<script> window.alert('False;'); </script>";
+					
+					
+					
+			}
+						
+		//	$_SESSION['currentq']
+		//print_r($safeAnsw);
+			var_dump($_SESSION['qid']);
+			var_dump($_SESSION['questPos']);
+			
+        break;
 		
+		case "restart":
 		unset($_SESSION["qid"]);
 		unset($_SESSION["currentq"]);
 		unset($_SESSION["questPos"]);
 		unset($_SESSION["qList"]);
 		
-		header('location: result.php');
+		prep_quiz();
+
+		$question = print_question($_SESSION['currentq']);
+		
+		break;
+		
+		default:
+		
+		prep_quiz();
+
+		$question = print_question($_SESSION['currentq']);
+
+		
+		break;
 	}
-		
-		
-	}
-	
-	function abortQuiz(){
-		
-	}
-	
-	//function getAnswer($)
 
-
-// Debug all
-/**
-	prep_quiz();
-	print_question($_SESSION['currentq']);  
-
-		echo "<br> Now update_question func: <br>";
-		update_question();
-		update_question();
-		update_question();
-		update_question();
-		update_question();
-		update_question();
-		update_question();
-		update_question();
-	**/
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 ?>
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>driving licence - updated</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.css">
+    <link rel="stylesheet" href="./assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="./assets/css/Registration-Form-with-Photo.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/untitled.css">
+	
+
+</head>
+
+<body id="bodyquiz">
+    <section class="d-flex flex-column justify-content-between">
+        <div id="quiztop-div-1">
+            <nav class="navbar navbar-light navbar-expand-md">
+                <div class="container-fluid"><a class="navbar-brand" href="#">Logo</a>
+                    <div class="collapse navbar-collapse" id="navcol-1">
+                        <ul class="nav navbar-nav mx-auto">
+                            <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Quiz</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="#">Theory</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="#">Driving School</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Hello <?php echo $_SESSION['username'];?></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <h1 class="text-center" id="quizhead" style="margin-top: 25px;font-size: 32px;">Quiz page</h1>
+            <h2 class="text-center" id="quizsubHead" style="font-size: 38px;">Time Remaining</h2>
+            <div class="col">
+                <p id="countTime" class="countTime">Rimuovere</p>
+            </div>
+        </div>
+    </section>
+    <section class="text-center">
+        <figure class="figure" id="signal"><img class="img-fluid figure-img" id="imgres" src="./<?php echo $question[2]; ?>" width="70%" height="auto">
+            <figcaption class="figure-caption">Question Nr. <?php echo $_SESSION['questPos']; ?> out of <?php echo NUM_OF_QUESTIONS; ?></figcaption>
+        </figure>
+    </section>
+    <section>
+        <div>
+            <div class="container" style="margin-bottom: 45px;">
+                <div class="row">
+                    <div class="col-sm-10 col-md-10 col-lg-8 col-xl-6 offset-sm-1 offset-md-1 offset-lg-2 offset-xl-3 text-center align-self-center">
+                        <p id="quizp" style="font-family: Montserrat, sans-serif;"><?php echo $question[0]; ?></p>
+                        <div style="margin-bottom: 10px;">
+                            
+						<form action="quiz.php" method="GET">
+							
+							<div class="form-check d-inline">
+								<input class="form-check-input" type="radio" name="answ" value="1">
+								<label class="form-check-label" id="checktrue" for="formCheck-1">T</label>
+							</div>
+                            
+							<div class="form-check d-inline" style="margin-left: 45px;">
+								<input class="form-check-input" type="radio" name="answ" value="0">
+								<label class="form-check-label" id="checkfalse">F</label>
+							</div>
+							
+                        </div>
+						<a class="nounderline"><button class="btn btn-primary btn-block text-center flex-grow-0 flex-shrink-0 start-button" data-bs-hover-animate="pulse" type="submit" name="action" value="next" style="background-color: rgba(204,122,0,0.51);">Next&nbsp;<i class="fa fa-chevron-right"></i></button></a>
+                        
+						<a class="nounderline">
+						
+							<button class="btn btn-primary btn-block text-center flex-grow-0 flex-shrink-0 correct-button" data-bs-hover-animate="pulse" type="submit" name="action" value="correct" style="background-color: rgba(0,204,20,0.51);">Correct&nbsp;<i class="fa fa-check"></i></button>
+							
+						</a>
+                        
+						<a class="nounderline" ><button class="btn btn-primary btn-block text-center flex-grow-0 flex-shrink-0 newquizbutton" data-bs-hover-animate="pulse" type="submit" name="action" value="restart" style="background-color: rgba(0,82,204,0.51);">Restart&nbsp;<i class="fa fa-repeat"></i></button></a>
+						</form>
+					</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.js"></script>
+    <script src="assets/js/timerscript.js"></script>
+		<script>
+    $(document).ready(function(){
+        $(":button[type='submit']").click(function(){
+            var radioValue = $("input[name='answ']:checked").val();
+            if(!radioValue){
+
+					 $("form").css({
+						"border-style": "solid",  
+						"border-color": "red"
+					});
+
+				alert("You didn't choose True or False!");
+				event.preventDefault();
+			}
+        });
+    });
+	</script>
+</body>
+
+</html>
