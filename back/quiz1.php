@@ -130,7 +130,7 @@ include('./quiz.php');
         </div>
     </section>
     <section class="text-center">
-        <figure class="figure" id="signal"><img class="img-fluid figure-img" id="imgres" src="assets/img/stopsignal.png" width="70%" height="auto">
+        <figure class="figure" id="signal"><img class="img-fluid figure-img" id="imgres" src="./<?php echo $question[2]; ?>" width="70%" height="auto">
             <figcaption class="figure-caption">Question Nr. <?php echo $_SESSION['questPos']; ?> out of 40</figcaption>
         </figure>
     </section>

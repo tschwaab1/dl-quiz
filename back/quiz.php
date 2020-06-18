@@ -83,7 +83,7 @@ require_once("./includes/config.inc.php");
 		*/
 		global $db;
 		
-		$query = "SELECT qText,qAnsw FROM questions WHERE id ='$nr'";
+		$query = "SELECT qText,qAnsw,qImg,qCat FROM questions WHERE id ='$nr'";
 		
 		$result = mysqli_query($db, $query);
 		$row = mysqli_fetch_assoc($result);
@@ -96,6 +96,7 @@ require_once("./includes/config.inc.php");
 		
 		$question[0] = $row['qText'];
 		$question[1] = $row['qAnsw'];
+		$question[2] = $row['qImg'];
 		
 		return $question;
 	}
