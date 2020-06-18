@@ -37,8 +37,7 @@ if (isset($_POST['submit'])) {
         if($insert){
             $to = $email;
             $subject = "Driving-quiz.it - Email Verification";
-            $message = "Welcome to Driving Licence Quiz website, <a href='https://driving-quiz.it/verify.php?vkey=$vkey'>
-            click on the link</a> to confirm your account and start training now!";
+            $message = "Dear $username, <br> Welcome to Driving Licence Quiz website, <a href='https://driving-quiz.it/verify.php?vkey=$vkey'>click on the link</a> to confirm your account and start training now!<br><br>We wish you good luck with your Test!<br><br>Your Driving-quiz.it Team";
             $headers = "From: admin@driving-quiz.it \r\n";
             $headers .= "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
