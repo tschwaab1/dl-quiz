@@ -61,7 +61,7 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>driving licence - updated</title>
+    <title>driving licence - Sign Up</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -75,7 +75,7 @@ if (isset($_POST['submit'])) {
     <section>
         <div id="top-div">
             <nav class="navbar navbar-light navbar-expand-md">
-                <div class="container-fluid"><a class="navbar-brand" href="#">WIE BI01</a></div>
+                <div class="container-fluid"><a class="navbar-brand" href="#">BI01</a></div>
             </nav>
         </div>
         <h1 id="head" class="text-center">Registration page</h1>

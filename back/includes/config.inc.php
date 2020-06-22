@@ -16,9 +16,9 @@ define("NUM_OF_QUESTIONS", 9);
 
 // Enter your Database Data
 $dbhost = 'localhost';
-$dbuser = 'c2_quiz';
-$dbpass = '_ojYeeEYh8G';
-$dbname = 'c2_quiz';
+$dbuser = 'tschwaab_dl';
+$dbpass = 'Of45J3NHBZSI04y5';
+$dbname = 'dl';
 
 $db = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
 // Check connection

@@ -7,24 +7,45 @@ Zweidimensionales Array ID, answer GLOBAL
 
 session_start();
 
+if(!isset($_SESSION["username"])){
+header("Location: ./index.php");
+exit(); }
+
+
 include('./includes/QuizFunc.php');
 
+//	var_dump($_SESSION);
 
 	if(!isset($_GET['action'])){
 		
 		$_GET['action'] = "";
 	
 	}
+	if(empty($_GET['msec'])){
+		$_GET['msec'] = 1800000; //30 * 60 * 1000	
+	}
+/**	$security = md5($_GET['mtan']."+TheSuperSaltyHas nobody knows!".);
+*/
 
 	switch($_GET['action']){
 	
 		case "correct":
 			
-			header('location: result.php');
+				unset($_SESSION["currentq"]);
+				unset($_SESSION["questPos"]);
+				unset($_SESSION["qList"]);
+		
+				header('location: result.php');
 			
         break;
 		
 		case "next":
+			/**
+				if($security !== $_GET['security']){
+		
+					die('You manipulated the Code! Cheating is not allowed!');
+
+				}**/
 			
 			if($_SESSION['questPos'] >= NUM_OF_QUESTIONS){
 		
@@ -47,20 +68,22 @@ include('./includes/QuizFunc.php');
 			
 			if($value == $question[1]){
 				
-			addAnswer($_SESSION['qid'], $_SESSION['questPos'],1);
+				addAnswer($_SESSION['qid'], $_SESSION['questPos'],1);
 					echo "<script> window.alert('True'); </script>";
 			}else{
-			addAnswer($_SESSION['qid'], $_SESSION['questPos'],0);
+				addAnswer($_SESSION['qid'], $_SESSION['questPos'],0);
 					echo "<script> window.alert('False;'); </script>";
 					
 					
 					
 			}
+			
+		//	$msec = $_GET['msec'];
 						
 		//	$_SESSION['currentq']
 		//print_r($safeAnsw);
-			var_dump($_SESSION['qid']);
-			var_dump($_SESSION['questPos']);
+		//	var_dump($_SESSION['qid']);
+		//	var_dump($_SESSION['questPos']);
 			
         break;
 		
@@ -69,6 +92,8 @@ include('./includes/QuizFunc.php');
 		unset($_SESSION["currentq"]);
 		unset($_SESSION["questPos"]);
 		unset($_SESSION["qList"]);
+		
+		$_GET['msec'] = 1800000; //30 * 60 * 1000	
 		
 		prep_quiz();
 
@@ -113,12 +138,13 @@ include('./includes/QuizFunc.php');
     <section class="d-flex flex-column justify-content-between">
         <div id="quiztop-div-1">
             <nav class="navbar navbar-light navbar-expand-md">
-                <div class="container-fluid"><a class="navbar-brand" href="#">Logo</a>
+                <div class="container-fluid"><a class="navbar-brand" href="#">BI01</a>
                     <div class="collapse navbar-collapse" id="navcol-1">
                         <ul class="nav navbar-nav mx-auto">
-                            <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Quiz</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="#">Theory</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="#">Driving School</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link active" href="./quiz.php">Quiz</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="./theory.html">Theory</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="./map.html">Driving School</a></li>
+                        </ul>
                         </ul>
                         <ul class="nav navbar-nav">
                             <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Hello <?php echo $_SESSION['username'];?></a></li>
@@ -129,13 +155,13 @@ include('./includes/QuizFunc.php');
             <h1 class="text-center" id="quizhead" style="margin-top: 25px;font-size: 32px;">Quiz page</h1>
             <h2 class="text-center" id="quizsubHead" style="font-size: 38px;">Time Remaining</h2>
             <div class="col">
-                <p id="countTime" class="countTime">Rimuovere</p>
+                <p id="countTime" class="countTime"></p>
             </div>
         </div>
     </section>
     <section class="text-center">
         <figure class="figure" id="signal"><img class="img-fluid figure-img" id="imgres" src="./<?php echo $question[2]; ?>" width="70%" height="auto">
-            <figcaption class="figure-caption">Question Nr. <?php echo $_SESSION['questPos']; ?> out of <?php echo NUM_OF_QUESTIONS; ?></figcaption>
+            <figcaption class="figure-caption">Question Nr. <?php echo $_SESSION['questPos']+1; ?> out of <?php echo NUM_OF_QUESTIONS+1; ?></figcaption>
         </figure>
     </section>
     <section>
@@ -166,6 +192,12 @@ include('./includes/QuizFunc.php');
 							<button class="btn btn-primary btn-block text-center flex-grow-0 flex-shrink-0 correct-button" data-bs-hover-animate="pulse" type="submit" name="action" value="correct" style="background-color: rgba(0,204,20,0.51);">Correct&nbsp;<i class="fa fa-check"></i></button>
 							
 						</a>
+						
+						
+						<input type="hidden" name="msec" id="msec" value="" />
+
+						
+						
                         
 						<a class="nounderline" ><button class="btn btn-primary btn-block text-center flex-grow-0 flex-shrink-0 newquizbutton" data-bs-hover-animate="pulse" type="submit" name="action" value="restart" style="background-color: rgba(0,82,204,0.51);">Restart&nbsp;<i class="fa fa-repeat"></i></button></a>
 						</form>
@@ -177,10 +209,36 @@ include('./includes/QuizFunc.php');
     <div></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
+    <script src="./assets/js/bs-init.js"></script>
     <script src="https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.js"></script>
-    <script src="assets/js/timerscript.js"></script>
+<!----    <script src="./assets/js/timerscript.js"></script> --->
+
+<?php
+///<?php echo"var countdown = ".$_GET['msec'];;
+?>
 		<script>
+		
+		
+		<?php echo"var countdown = ".$_GET['msec'];?>;
+		var timerId = setInterval(function(){
+			countdown -= 1000;
+		var min = Math.floor(countdown / (60 * 1000));
+		var sec = Math.floor((countdown - (min * 60 * 1000)) / 1000);
+			if (countdown <= 0) {
+				alert("30 Min are over, now you'll see the results.");
+				clearInterval(timerId);
+				$(location).attr('href', './result.php');
+			} else {
+				$("#countTime").html(min + " : " + sec);
+	 
+				$(":button[type='submit']").click(function(){
+				document.getElementById("msec").value = countdown;
+   
+    });
+  }
+}, 1000);
+		
+		
     $(document).ready(function(){
         $(":button[type='submit']").click(function(){
             var radioValue = $("input[name='answ']:checked").val();

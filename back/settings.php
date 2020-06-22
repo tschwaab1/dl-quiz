@@ -68,11 +68,33 @@ return output;
 
 
 <body id="loginbody">
-    <section>
+    
+	
+	
+	
+
+	
+	
+	<section>
         <div id="top-div">
             <nav class="navbar navbar-light navbar-expand-md">
-                <div class="container-fluid"><a class="navbar-brand" href="#">BI01</a></div>
+<div class="container-fluid"><a class="navbar-brand" href="#">BI01&nbsp;</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1" style="font-family: Montserrat, sans-serif;"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                    <div
+                        class="collapse navbar-collapse" id="navcol-1" style="margin-left: 0px;">
+                        <ul class="nav navbar-nav mx-auto" style="/*padding-left: 62px;*/">
+                            <li class="nav-item" role="presentation"><a class="nav-link active" href="./quiz.php">Quiz</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="./theory.html">Theory</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="./map.html">Driving School</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Hello <?php echo $_SESSION['username']; ?></a>
+                                <div class="dropdown-menu" role="menu" style="background-color: rgba(255,255,255,0.46);"><a class="dropdown-item" role="presentation" href="./result.php">Stats</a><a class="dropdown-item" role="presentation" href="./settings.php">Settings</a><a class="dropdown-item" role="presentation" href="./logout.php">Logout</a></div>
+                            </li>
+                        </ul>
+                </div>
+        </div>
             </nav>
+            <h1 class="text-center" id="head" style="color:black">test</h1>
         </div>
         <h1 id="head" class="text-center">Change Password</h1>
     </section>

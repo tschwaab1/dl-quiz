@@ -13,7 +13,10 @@ if(isset($_GET['vkey'])){
         $update = $db->query("UPDATE accounts SET verified = 1 WHERE vkey = '$vkey' LIMIT 1");
 
         if($update){
-            echo "Your account has been verified. You must now login";
+            //echo "Your account has been verified. You must now login";
+
+			header("location: ./confirm-redirect.html"); 
+
         }else {
             echo $db->error;
         }
