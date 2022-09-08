@@ -3,8 +3,8 @@ session_start();
 
 require_once("./includes/QuizFunc.php");
 
-//	var_dump($_SESSION);
 
+//	var_dump
 	
 if(!isset($_SESSION['qid'])){
 	die('You are currently not doing a Quiz! <a href="./index.php">Go back</a>');
@@ -40,7 +40,10 @@ if(!isset($_SESSION['username'])){
 
 //var_dump($_SESSION);
 
-	unset($_SESSION["qid"]);
+		unset($_SESSION["qid"]);
+		unset($_SESSION["currentq"]);
+		unset($_SESSION["questPos"]);
+		unset($_SESSION["qList"]);
 
 ?>
 
@@ -53,29 +56,67 @@ if(!isset($_SESSION['username'])){
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="./assets/css/styles.css">
+  <link rel="stylesheet" href="./assets/css/untitled.css">
+  
 </head>
 <body style="font-family: Montserrat;">
 
+            <nav class="navbar navbar-light navbar-expand-md">
+                <div class="container-fluid"><a class="navbar-brand" href="./index.php" style="color:black;">BI01</a>
+                    <div class="collapse navbar-collapse" id="navcol-1">
+
+
+                    </div>
+                </div>
+            </nav>
+
 <div class="container">
+
+
+
   <h2 class="text-center" style="color:black;">Questions review</h2>
   <div class="panel-group" id="accordion">
   
   
-  <?php for($i=1; $i <= NUM_OF_QUESTIONS; $i++){ 
+  <?php for($i=1; $i <= NUM_OF_QUESTIONS+1; $i++){ 
   
 	$countt = $i - 1;
   
   $questionText = print_question($qList[$countt]);
   
-  if($json_qData['q'.$countt] != $questionText[1]){
-	
-		$pane = "panel-success";
-		$answ = "<a color='green'><b>correct</b></a>";
+  if($questionText[1] == 1){
+	  	  $answer = "true";
   }
-  else{
-	  $pane = "panel-danger";
-	  $answ = "<a color='red'><b>wrong</b></a>";
+  else {
+	  	  $answer = "false";
   }
+  
+
+  
+  if($json_qData['q'.$countt] == 0 and $questionText[1] == 0){
+	 $pane = "panel-success";
+	 $answ = "<a color='green'><b>correct</b></a>";
+  }
+  elseif($json_qData['q'.$countt] == 1 and $questionText[1] == 1){
+	 $pane = "panel-success";
+	 $answ = "<a color='green'><b>correct</b></a>";
+  } 
+    elseif($json_qData['q'.$countt] == 1 and $questionText[1] == 0){
+	$pane = "panel-danger";
+	$answ = "<a color='red'><b>wrong</b></a>";
+  } 
+    elseif($json_qData['q'.$countt] == 0 and $questionText[1] == 1){
+	$pane = "panel-danger";
+	$answ = "<a color='red'><b>wrong</b></a>";
+  }
+else{
+	die("Fucking freaking special error!");
+}  
+
+  
+//  	var_dump($_SESSION);
+//	var_dump($questionText);
+  
   ?>
 	 <div class="panel <?php echo $pane; ?>">
 		<div class="panel-heading">
@@ -84,7 +125,7 @@ if(!isset($_SESSION['username'])){
 			</h4>
 		</div>
 		<div id="collapse<?php echo $i;?>" class="panel-collapse collapse">
-			<div style="color:black;" class="panel-body"><img src="./<?php echo $questionText[2];?>" width="10%" height="auto"> <?php echo $questionText[0]; ?></div>
+			<div style="color:black;" class="panel-body"><img src="./<?php echo $questionText[2];?>" width="10%" height="auto"> The answer of the Question is: <?php echo $answer;// echo $answer; echo "TEST json:"; echo $json_qData['q'.$countt]; echo "Test DB:"; echo $questionText[1];?> <br><?php echo $questionText[0]; ?></div>
 		</div>
     </div>
     
@@ -96,9 +137,8 @@ if(!isset($_SESSION['username'])){
 
 
       <div class="row">
-          <div class="col-sm-10 col-md-10 col-lg-8 col-xl-6 offset-sm-1 offset-md-1 offset-lg-2 offset-xl-3 text-center align-self-center">
-                  <a
-                      class="nounderline" href="./quiz.php?action=restart"><button class="btn btn-primary btn-block text-center flex-grow-0 flex-shrink-0 newquizbutton" data-bs-hover-animate="pulse" type="button" style="background-color: rgba(0,82,204,0.51);">Restart&nbsp;<i class="fa fa-repeat"></i></button></a>
+          <div class="text-center align-self-center">
+                  <a class="nounderline" href="./quiz.php?action=restart"><button class="btn btn-primary btn-block text-center flex-grow-0 flex-shrink-0 newquizbutton" data-bs-hover-animate="pulse" type="button" style="background-color: rgba(0,82,204,0.51);">Restart&nbsp;<i class="fa fa-repeat"></i></button></a>
           </div>
       </div>
   </div>

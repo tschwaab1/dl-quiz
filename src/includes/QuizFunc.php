@@ -17,12 +17,22 @@ require_once("./includes/config.inc.php");
 	
 	//session_start();
 	
-	function prep_quiz(){
+	function prep_quiz($cat){
 		
+		if($cat == ""){
+			$query = "SELECT id, qCat FROM questions ORDER BY Rand() LIMIT 40";
+			
+		}
+		else {
+			$query = "SELECT id, qCat FROM questions WHERE qCat = '".$cat."' ORDER BY Rand() LIMIT 40";
+			
+		}
 		
 		global $text,$db;
 
-		  $query = "SELECT id FROM questions ORDER BY Rand() LIMIT 40";
+		  
+		  
+		  
 		  $result = mysqli_query($db ,$query);
 				
 		  while($row = mysqli_fetch_assoc($result)){

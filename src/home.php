@@ -48,13 +48,13 @@ exit(); }
                         <ul class="nav navbar-nav mx-auto" style="/*padding-left: 62px;*/">                        
 
                             <li class="nav-item" role="presentation"><a class="nav-link active" href="./quiz.php">Quiz</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="./theory.html">Theory</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="./map.html">Driving School</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="./theory.php">Theory</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="./map.php">Driving School</a></li>
                         </ul>
                         </ul>
                         <ul class="nav navbar-nav">
                             <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Hello <?php echo $_SESSION['username']; ?></a>
-                                <div class="dropdown-menu" role="menu" style="background-color: rgba(255,255,255,0.46);"><a class="dropdown-item" role="presentation" href="./result.php">Stats</a><a class="dropdown-item" role="presentation" href="./settings.php">Settings</a><a class="dropdown-item" role="presentation" href="./logout.php">Logout</a></div>
+                                <div class="dropdown-menu" role="menu" style="background-color: rgba(255,255,255,0.46);"><a class="dropdown-item" role="presentation" href="./stats.php">Stats</a><a class="dropdown-item" role="presentation" href="./settings.php">Settings</a><a class="dropdown-item" role="presentation" href="./logout.php">Logout</a></div>
                             </li>
                         </ul>
                 </div>
@@ -96,7 +96,7 @@ exit(); }
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="./assets/js/bs-init.js"></script>
     <script src="https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.js"></script>
-    <script src="./assets/js/timerscript.js"></script>
+
 </body>
 
 </html>

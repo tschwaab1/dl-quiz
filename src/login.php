@@ -58,7 +58,7 @@ if (isset($_POST['submit'])){
     <section>
         <div id="top-div">
             <nav class="navbar navbar-light navbar-expand-md">
-                <div class="container-fluid"><a class="navbar-brand" href="#">WIE BI01</a></div>
+                <div class="container-fluid"><a class="navbar-brand" href="http://www.driving-quiz.it/">BI01</a></div>
             </nav>
         </div>
         <h1 id="head" class="text-center">Login page</h1>

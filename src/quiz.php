@@ -9,6 +9,7 @@ session_start();
 
 if(!isset($_SESSION["username"])){
 header("Location: ./index.php");
+
 exit(); }
 
 
@@ -27,6 +28,9 @@ include('./includes/QuizFunc.php');
 /**	$security = md5($_GET['mtan']."+TheSuperSaltyHas nobody knows!".);
 */
 
+$cat = $_GET['cat'];
+
+	
 	switch($_GET['action']){
 	
 		case "correct":
@@ -69,10 +73,10 @@ include('./includes/QuizFunc.php');
 			if($value == $question[1]){
 				
 				addAnswer($_SESSION['qid'], $_SESSION['questPos'],1);
-					echo "<script> window.alert('True'); </script>";
+					//echo "<script> window.alert('True'); </script>";
 			}else{
 				addAnswer($_SESSION['qid'], $_SESSION['questPos'],0);
-					echo "<script> window.alert('False;'); </script>";
+					//echo "<script> window.alert('False;'); </script>";
 					
 					
 					
@@ -95,7 +99,7 @@ include('./includes/QuizFunc.php');
 		
 		$_GET['msec'] = 1800000; //30 * 60 * 1000	
 		
-		prep_quiz();
+		prep_quiz($cat);
 
 		$question = print_question($_SESSION['currentq']);
 		
@@ -103,7 +107,7 @@ include('./includes/QuizFunc.php');
 		
 		default:
 		
-		prep_quiz();
+		prep_quiz($cat);
 
 		$question = print_question($_SESSION['currentq']);
 
@@ -120,7 +124,7 @@ include('./includes/QuizFunc.php');
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>driving licence - updated</title>
+    <title>driving licence - quiz</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -138,17 +142,10 @@ include('./includes/QuizFunc.php');
     <section class="d-flex flex-column justify-content-between">
         <div id="quiztop-div-1">
             <nav class="navbar navbar-light navbar-expand-md">
-                <div class="container-fluid"><a class="navbar-brand" href="#">BI01</a>
+                <div class="container-fluid"><a class="navbar-brand" href="./index.php">BI01</a>
                     <div class="collapse navbar-collapse" id="navcol-1">
-                        <ul class="nav navbar-nav mx-auto">
-                            <li class="nav-item" role="presentation"><a class="nav-link active" href="./quiz.php">Quiz</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="./theory.html">Theory</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="./map.html">Driving School</a></li>
-                        </ul>
-                        </ul>
-                        <ul class="nav navbar-nav">
-                            <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Hello <?php echo $_SESSION['username'];?></a></li>
-                        </ul>
+
+
                     </div>
                 </div>
             </nav>
